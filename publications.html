@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publications · Brooks Depro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:       #1a2744;
+      --navy-dk:    #111b30;
+      --gold:       #c9a535;
+      --gold-lt:    #debb55;
+      --gold-pale:  rgba(201,165,53,0.10);
+      --gold-link:  #8a6e1a;
+      --cream:      #f9f8f5;
+      --surface:    #f3f2ef;
+      --white:      #ffffff;
+      --text:       #1c1c1c;
+      --text-2:     #4a4a4a;
+      --muted:      #888;
+      --border:     rgba(0,0,0,0.08);
+      --radius:     12px;
+      --shadow-sm:  0 1px 6px rgba(0,0,0,0.07), 0 2px 16px rgba(0,0,0,0.05);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy-dk);
+      border-bottom: 2px solid var(--gold);
+    }
+    .nav-inner {
+      max-width: 900px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 52px;
+    }
+    .nav-name {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1rem; font-weight: 600; color: var(--white);
+      text-decoration: none;
+    }
+    .nav-name:hover { color: var(--gold-lt); }
+    .nav-links { display: flex; gap: 0.25rem; list-style: none; }
+    .nav-links a {
+      display: block; padding: 0.4rem 0.85rem;
+      font-size: 0.78rem; font-weight: 500;
+      color: rgba(255,255,255,0.65); text-decoration: none;
+      border-radius: 5px; letter-spacing: 0.03em;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+    .nav-links a.active { color: var(--gold-lt); }
+
+    /* Page header */
+    .page-header {
+      background: linear-gradient(135deg, #111b30 0%, #1a2744 60%, #243356 100%);
+      border-bottom: 3px solid var(--gold);
+      padding: 3rem 2rem 2.5rem;
+    }
+    .page-header-inner { max-width: 900px; margin: 0 auto; }
+    .page-header-eyebrow {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.20em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;
+    }
+    .page-header h1 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 600; color: var(--white);
+      line-height: 1.1; margin-bottom: 0.5rem;
+    }
+    .page-header p { font-size: 0.9rem; color: rgba(255,255,255,0.6); }
+
+    /* Main */
+    main { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+    /* Year group */
+    .year-group { margin-bottom: 2.75rem; }
+    .year-heading {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1.5rem; font-weight: 600;
+      color: var(--navy);
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .year-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Pub items */
+    .pub-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      box-shadow: var(--shadow-sm);
+      padding: 1.1rem 1.4rem;
+      margin-bottom: 0.7rem;
+      font-size: 0.84rem;
+      color: var(--text-2);
+      line-height: 1.70;
+    }
+    .pub-item:last-child { margin-bottom: 0; }
+    .pub-type {
+      display: inline-block;
+      font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--navy);
+      background: var(--gold-pale);
+      border: 1px solid rgba(201,165,53,0.25);
+      padding: 0.1rem 0.5rem; border-radius: 4px;
+      margin-bottom: 0.4rem;
+    }
+    .pub-item a { color: var(--text); text-decoration: none; }
+    .pub-item a:hover { color: var(--navy); text-decoration: underline; }
+    .pub-item em { font-style: italic; }
+
+    /* Footer */
+    footer {
+      background: var(--navy-dk);
+      border-top: 2px solid var(--gold);
+      text-align: center; padding: 1.75rem 1rem;
+      font-size: 0.75rem; color: rgba(255,255,255,0.4);
+    }
+    footer a { color: rgba(201,165,53,0.7); text-decoration: none; }
+    footer a:hover { color: var(--gold-lt); }
+
+    @media (max-width: 640px) {
+      main { padding: 2rem 1.25rem 3.5rem; }
+      .nav-name { font-size: 0.88rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="index.html">Brooks Depro</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#research">Research</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="publications.html" class="active">Publications</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="page-header-eyebrow">Brooks Depro · Elon University</p>
+    <h1>Publications</h1>
+    <p>Chicago Author-Date format &nbsp;·&nbsp; 17 publications, 2006–2026</p>
+  </div>
+</div>
+
+<main>
+
+  <div class="year-group">
+    <div class="year-heading">2026</div>
+
+    <div class="pub-item">
+      <div class="pub-type">Journal Article</div><br>
+      <a href="https://journalofeconomicsteaching.org/making-space-for-moral-reasoning-in-economics-classrooms-an-active-learning-approach-depro/">Depro, B. 2026. "Making Space for Moral Reasoning in Economics Classrooms: An Active Learning Approach." <em>Journal of Economics Teaching</em>. Advance online publication. https://doi.org/10.58311/jeconteach/a2d39e0f888b49ce8c11cdbe0e44c041268801c8</a>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-type">Journal Article</div><br>
+      <a href="https://www.sciencedirect.com/science/article/pii/S1477388026000113">Marshall, E. C., B. Sheridan, D. McKee, G. Orlov, W. Goffe, A. Bellas, B. Depro, F. Ersoy, P. Graf, A. Green, et al. 2026. "Measuring Academic Mindset in Economics Courses." <em>International Review of Economics Education</em> 52: 100349. https://doi.org/10.1016/j.iree.2026.100349</a>
+    </div>
+  </div>
+
+  <div class="year-group">
+    <div class="year-heading">2024</div>
+
+    <div class="pub-item">
+      <div class="pub-type">Journal Article</div><br>
+      <a href="https://journal-veterans-studies.org/articles/10.21061/jvs.v10i1.544">Depro, B. 2024. "Achieving the American Dream, Homeownership Wealth, and Voluntary Military Service: A Snapshot of Homeowners Who Transitioned to Adulthood During the First Gulf War." <em>Journal of Veterans Studies</em> 10 (1): 214&ndash;221. https://doi.org/10.21061/jvs.v10i1.544</a>
+    </div>
+  </div>
+
+  <div class="year-group">
+    <div class="year-heading">2022</div>
+
+    <div class="pub-item">
+      <div class="pub-type">Journal Article</div><br>
+      <a href="https://www.sciencedirect.com/science/article/abs/pii/S1477388022000160">Depro, B., and K. Rouse. 2022. "Adapting the Case Method in an Economics Capstone Research Course." <em>International Review of Economics Education</em> 41: 100249.</a>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-type">Journal Article</div><br>
+      <a href="https://www.sciencedirect.com/science/article/abs/pii/S1477388021000220">Depro, B. 2022. "Making Introductory Economics More Relevant: Using Personalized Connections to Introduce Environmental Economics." <em>International Review of Economics Education</em> 39: 100230.</a>
+    </div>
+  </div>
+
+  <div class="year-group">
+    <div class="year-heading">2021</div>
+
+    <div class="pub-item">
+      <div class="pub-type">Journal Article</div><br>
+      <a href="http://le.uwpress.org/content/97/2/475.abstract">Depro, B. 2021. "Did Smog Rules Influence Who Loses? Manufacturing Job Losses and the Great Recession." <em>Land Economics</em> 97 (2): 475&ndash;490.</a>
+    </div>
+  </div>
+
+  <div class="year-group">
+    <div class="year-heading">2018</div>
+
+    <div class="pub-item">
+      <div class="pub-type">Report</div><br>
+      <a href="https://www.rti.org/rti-press-publication/environmental-justice-concerns-and-proposed-atlantic-coast-pipeline-route">Wraight, S., J. Hofmann, J. Allpress, and B. Depro. 2018. <em>Environmental Justice Concerns and the Proposed Atlantic Coast Pipeline Route in North Carolina</em>. RTI Press Publication No. MR-0037-1803. Research Triangle Park, NC: RTI Press.</a> <a href="https://doi.org/10.3768/rtipress.2018.mr.0037.1803" target="_blank">https://doi.org/10.3768/rtipress.2018.mr.0037.1803</a>
+    </div>
+  </div>
+
+  <div class="year-group">
+    <div class="year-heading">2016</div>
+
+    <div class="pub-item">
+      <div class="pub-type">Report</div><br>
+      <a href="https://www.rti.org/rti-press-publication/construction-and-application-meede-dataset">Woollacott, J., and B. Depro. 2016. <em>Construction and Application of the MEEDE Dataset</em>. RTI Press Publication No. MR-0035-1608. Research Triangle Park, NC: RTI Press. https://doi.org/10.3768/rtipress.2016.mr.0035.1608</a>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-type">Journal Article</div><br>
+      <a href="https://link.springer.com/article/10.1007/s12122-016-9228-1">Bray, J., B. Depro, D. McMahon, M. Siegle, and L. Mobley. 2016. "Disconnected Geography: A Spatial Analysis of Disconnected Youth in the United States." <em>Journal of Labor Research</em>. Advance online publication. https://doi.org/10.1007/s12122-016-9228-1</a>
+    </div>
+  </div>
+
+  <div class="year-group">
+    <div class="year-heading">2015</div>
+
+    <div class="pub-item">
+      <div class="pub-type">Journal Article</div><br>
+      <a href="http://www.journals.uchicago.edu/doi/abs/10.1086/682716">Depro, B., C. Timmins, and M. O'Neil. 2015. "White Flight and Coming to the Nuisance: Can Residential Mobility Explain Environmental Injustice?" <em>Journal of the Association of Environmental and Resource Economists</em> 2 (3): 439&ndash;468. https://doi.org/10.1086/682716</a>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-type">Journal Article</div><br>
+      <a href="http://www.sciencedirect.com/science/article/pii/S0272775715001132">Depro, B., and K. Rouse. 2015. "The Effect of Multi-Track Year-Round Academic Calendars on Property Values: Evidence from District Imposed School Calendar Conversions." <em>Economics of Education Review</em> 49: 157&ndash;171. https://doi.org/10.1016/j.econedurev.2015.09.006</a>
+    </div>
+  </div>
+
+  <div class="year-group">
+    <div class="year-heading">2012</div>
+
+    <div class="pub-item">
+      <div class="pub-type">Book Chapter</div><br>
+      <a href="http://www.sup.org/books/title/?id=20260">Depro, B., and C. Timmins. 2012. "Residential Mobility and Ozone Exposure: Challenges for Environmental Justice Policy." In <em>The Political Economy of Environmental Justice</em>, edited by H. Spencer Banzhaf, 145&ndash;188. Stanford, CA: Stanford University Press.</a>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-type">Journal Article</div><br>
+      <a href="http://le.uwpress.org/content/88/1/43.abstract">Depro, B. M., and R. B. Palmquist. 2012. "How Do Ozone Levels Influence the Timing of Residential Moves?" <em>Land Economics</em> 88 (1): 43&ndash;57.</a>
+    </div>
+  </div>
+
+  <div class="year-group">
+    <div class="year-heading">2011</div>
+
+    <div class="pub-item">
+      <div class="pub-type">Book Chapter</div><br>
+      <a href="http://www.tandfebooks.com/isbn/9780203828991">Van Houtven, G. L., S. K. Pattanayak, and B. M. Depro. 2011. "Benefits Transfer of a Third Kind: An Examination of Structural Benefits Transfer." In <em>Preference Data for Environmental Valuation</em>, Explorations in Environmental Economics Series, edited by J. Whitehead, J. C. Huang, and T. Habb. London: Routledge.</a>
+    </div>
+  </div>
+
+  <div class="year-group">
+    <div class="year-heading">2009</div>
+
+    <div class="pub-item">
+      <div class="pub-type">Journal Article</div><br>
+      <a href="https://www.degruyter.com/view/j/bejeap.2009.9.2/bejeap.2009.9.2.2096/bejeap.2009.9.2.2096.xml">Pattanayak, S. K., M. T. Ross, B. M. Depro, S. Bauch, C. Timmins, K. J. Wendland, and K. Alger. 2009. "Climate Change and Conservation in Brazil: CGE Evaluation of Health and Wealth Impacts." <em>The B.E. Journal of Economic Analysis &amp; Policy</em> 9 (2). http://www.bepress.com/bejeap/vol9/iss2/art6</a>
+    </div>
+  </div>
+
+  <div class="year-group">
+    <div class="year-heading">2008</div>
+
+    <div class="pub-item">
+      <div class="pub-type">Journal Article</div><br>
+      <a href="http://www.sciencedirect.com/science/article/pii/S037811270700802X">Depro, B. M., B. Murray, R. J. Alig, and A. Shanks. 2008. "Public Land, Timber Harvests, and Climate Mitigation: Quantifying Carbon Sequestration Potential on U.S. Public Timberlands." <em>Forest Ecology and Management</em> 255 (3&ndash;4): 1122&ndash;1134.</a>
+    </div>
+  </div>
+
+  <div class="year-group">
+    <div class="year-heading">2006</div>
+
+    <div class="pub-item">
+      <div class="pub-type">Journal Article</div><br>
+      <a href="http://journals.sagepub.com/doi/abs/10.1177/0193723506286863">Hartmann, D., and B. M. Depro. 2006. "Re-Thinking Sports-Based Community Crime Prevention." <em>Journal of Sport and Social Issues</em> 30 (2): 180&ndash;196.</a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Brooks Depro &nbsp;·&nbsp; Associate Professor of Economics &nbsp;·&nbsp;
+  <a href="https://www.elon.edu" target="_blank">Elon University</a>
+  &nbsp;·&nbsp;
+  <a href="index.html">Home</a>
+</footer>
+
+</body>
+</html>

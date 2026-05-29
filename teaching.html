@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teaching · Brooks Depro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:       #1a2744;
+      --navy-dk:    #111b30;
+      --gold:       #c9a535;
+      --gold-lt:    #debb55;
+      --gold-pale:  rgba(201,165,53,0.10);
+      --gold-link:  #8a6e1a;
+      --cream:      #f9f8f5;
+      --surface:    #f3f2ef;
+      --white:      #ffffff;
+      --text:       #1c1c1c;
+      --text-2:     #4a4a4a;
+      --muted:      #888;
+      --border:     rgba(0,0,0,0.08);
+      --radius:     12px;
+      --shadow-sm:  0 1px 6px rgba(0,0,0,0.07), 0 2px 16px rgba(0,0,0,0.05);
+      --shadow-hv:  0 8px 36px rgba(0,0,0,0.14);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy-dk);
+      border-bottom: 2px solid var(--gold);
+    }
+    .nav-inner {
+      max-width: 900px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 52px;
+    }
+    .nav-name {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1rem; font-weight: 600; color: var(--white);
+      text-decoration: none;
+    }
+    .nav-name:hover { color: var(--gold-lt); }
+    .nav-links { display: flex; gap: 0.25rem; list-style: none; }
+    .nav-links a {
+      display: block; padding: 0.4rem 0.85rem;
+      font-size: 0.78rem; font-weight: 500;
+      color: rgba(255,255,255,0.65); text-decoration: none;
+      border-radius: 5px; letter-spacing: 0.03em;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+    .nav-links a.active { color: var(--gold-lt); }
+
+    /* Page header */
+    .page-header {
+      background: linear-gradient(135deg, #111b30 0%, #1a2744 60%, #243356 100%);
+      border-bottom: 3px solid var(--gold);
+      padding: 3rem 2rem 2.5rem;
+    }
+    .page-header-inner { max-width: 900px; margin: 0 auto; }
+    .page-header-eyebrow {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.20em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .page-header h1 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 600; color: var(--white);
+      line-height: 1.1; margin-bottom: 0.5rem;
+    }
+    .page-header p {
+      font-size: 0.9rem; color: rgba(255,255,255,0.6);
+    }
+
+    /* Main */
+    main {
+      max-width: 900px; margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+    .sec-label {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.20em;
+      text-transform: uppercase; color: var(--muted);
+      padding-bottom: 0.55rem; border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+    section { margin-bottom: 3rem; }
+
+    /* Course cards */
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .course-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--navy);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 1.4rem 1.4rem 1.2rem;
+      text-decoration: none; color: inherit;
+      display: flex; flex-direction: column; gap: 0.4rem;
+      transition: transform 0.17s ease, box-shadow 0.17s ease, border-top-color 0.17s ease;
+    }
+    .course-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hv);
+      border-top-color: var(--gold);
+    }
+    .course-code {
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold-link);
+    }
+    .course-name {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--text); line-height: 1.25;
+    }
+    .course-desc {
+      font-size: 0.82rem; color: var(--text-2); line-height: 1.6; flex: 1;
+    }
+    .course-arrow {
+      margin-top: 0.6rem; font-size: 0.75rem; font-weight: 500;
+      color: var(--navy); display: flex; align-items: center; gap: 4px;
+    }
+    .course-arrow svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+
+    /* Philosophy */
+    .philosophy-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      box-shadow: var(--shadow-sm);
+      padding: 1.5rem 1.75rem;
+    }
+    .philosophy-card p {
+      font-size: 0.9rem; color: var(--text-2);
+      line-height: 1.80; margin-bottom: 0.9rem;
+    }
+    .philosophy-card p:last-child { margin-bottom: 0; }
+    .philosophy-card a { color: var(--gold-link); font-weight: 500; }
+    .philosophy-card a:hover { text-decoration: underline; }
+
+    /* Pub highlights */
+    .highlight-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .highlight-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      box-shadow: var(--shadow-sm);
+      padding: 1rem 1.25rem;
+      font-size: 0.83rem; color: var(--text-2); line-height: 1.65;
+    }
+    .highlight-item a { color: var(--text); text-decoration: none; font-weight: 500; }
+    .highlight-item a:hover { color: var(--navy); text-decoration: underline; }
+    .highlight-item em { font-style: italic; }
+
+    .view-all-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 1.25rem;
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--navy); text-decoration: none;
+      border: 1px solid rgba(26,39,68,0.20);
+      padding: 0.5rem 1rem; border-radius: 6px;
+      background: var(--surface);
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .view-all-link:hover { background: var(--gold-pale); border-color: rgba(201,165,53,0.35); }
+    .view-all-link svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+
+    /* Footer */
+    footer {
+      background: var(--navy-dk);
+      border-top: 2px solid var(--gold);
+      text-align: center; padding: 1.75rem 1rem;
+      font-size: 0.75rem; color: rgba(255,255,255,0.4);
+    }
+    footer a { color: rgba(201,165,53,0.7); text-decoration: none; }
+    footer a:hover { color: var(--gold-lt); }
+
+    @media (max-width: 640px) {
+      main { padding: 2rem 1.25rem 3.5rem; }
+      .course-grid { grid-template-columns: 1fr; }
+      .nav-name { font-size: 0.88rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="index.html">Brooks Depro</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#research">Research</a></li>
+      <li><a href="teaching.html" class="active">Teaching</a></li>
+      <li><a href="publications.html">Publications</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="page-header-eyebrow">Brooks Depro · Elon University</p>
+    <h1>Teaching</h1>
+    <p>Courses taught in economics, environmental policy, and business strategy</p>
+  </div>
+</div>
+
+<main>
+
+  <section>
+    <p class="sec-label">Courses</p>
+    <div class="course-grid">
+      <a class="course-card" href="https://bdepro.github.io/courses/eco1000-cengage/">
+        <span class="course-code">ECO 1000</span>
+        <span class="course-name">Principles of Economics</span>
+        <span class="course-desc">An introduction to micro and macroeconomic reasoning for first-year students. Topics include supply and demand, market structure, GDP, unemployment, inflation, and fiscal policy.</span>
+        <span class="course-arrow">Course site <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </a>
+      <a class="course-card" href="https://bdepro.github.io/courses/mba6250/">
+        <span class="course-code">MBA 6250</span>
+        <span class="course-name">Essential Economics for Strategic Management</span>
+        <span class="course-desc">Economic frameworks for managerial decision-making, including demand estimation, pricing strategy, cost analysis, and market structure — applied to real business cases.</span>
+        <span class="course-arrow">Course site <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </a>
+      <a class="course-card" href="https://bdepro.github.io/courses/eco4400/">
+        <span class="course-code">ECO 4400</span>
+        <span class="course-name">Applied Economics &amp; Consulting</span>
+        <span class="course-desc">A senior capstone using the case method to develop independent research skills, professional writing, and economic reasoning applied to real-world consulting problems.</span>
+        <span class="course-arrow">Course site <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </a>
+      <a class="course-card" href="https://bdepro.github.io/courses/cor1100/">
+        <span class="course-code">COR 1100</span>
+        <span class="course-name">The Global Experience</span>
+        <span class="course-desc">Elon's interdisciplinary core course exploring global challenges through economics, political science, history, and ethics.</span>
+        <span class="course-arrow">Course site <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <p class="sec-label">Teaching Philosophy</p>
+    <div class="philosophy-card">
+      <p>Dr. Depro's teaching centers on active learning, real-world applications, and connecting economic reasoning to students' own lives and communities. His classroom practice reflects a teacher-scholar model — he brings current research into course design and uses pedagogical questions to motivate new scholarship.</p>
+      <p>His recent work on <a href="https://journalofeconomicsteaching.org/making-space-for-moral-reasoning-in-economics-classrooms-an-active-learning-approach-depro/" target="_blank">moral reasoning in economics classrooms</a>, <a href="https://www.sciencedirect.com/science/article/abs/pii/S1477388021000220" target="_blank">personalized connections to environmental economics</a>, and <a href="https://www.sciencedirect.com/science/article/abs/pii/S1477388022000160" target="_blank">the case method in capstone courses</a> appears in the <em>International Review of Economics Education</em> and the <em>Journal of Economics Teaching</em>. The Martha and Spencer Love School of Business recognized this work with the Dean's Award for Excellence in Teaching.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="sec-label">Selected Teaching Publications</p>
+    <div class="highlight-list">
+      <div class="highlight-item">
+        <a href="https://journalofeconomicsteaching.org/making-space-for-moral-reasoning-in-economics-classrooms-an-active-learning-approach-depro/">Depro, B. 2026. "Making Space for Moral Reasoning in Economics Classrooms: An Active Learning Approach." <em>Journal of Economics Teaching</em>. Advance online publication.</a>
+      </div>
+      <div class="highlight-item">
+        <a href="https://www.sciencedirect.com/science/article/pii/S1477388026000113">Marshall, E. C., B. Sheridan, D. McKee, G. Orlov, W. Goffe, A. Bellas, B. Depro, et al. 2026. "Measuring Academic Mindset in Economics Courses." <em>International Review of Economics Education</em> 52: 100349.</a>
+      </div>
+      <div class="highlight-item">
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/S1477388022000160">Depro, B., and K. Rouse. 2022. "Adapting the Case Method in an Economics Capstone Research Course." <em>International Review of Economics Education</em> 41: 100249.</a>
+      </div>
+      <div class="highlight-item">
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/S1477388021000220">Depro, B. 2022. "Making Introductory Economics More Relevant: Using Personalized Connections to Introduce Environmental Economics." <em>International Review of Economics Education</em> 39: 100230.</a>
+      </div>
+    </div>
+    <a class="view-all-link" href="publications.html">
+      View all publications <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+  </section>
+
+</main>
+
+<footer>
+  Brooks Depro &nbsp;·&nbsp; Associate Professor of Economics &nbsp;·&nbsp;
+  <a href="https://www.elon.edu" target="_blank">Elon University</a>
+  &nbsp;·&nbsp;
+  <a href="index.html">Home</a>
+</footer>
+
+</body>
+</html>

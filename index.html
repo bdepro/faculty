@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brooks Depro · Associate Professor of Economics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* Palette drawn from Marine dress blues in banner photo */
+    :root {
+      --navy:       #1a2744;
+      --navy-dk:    #111b30;
+      --navy-lt:    #243356;
+      --gold:       #c9a535;
+      --gold-lt:    #debb55;
+      --gold-pale:  rgba(201,165,53,0.10);
+      --gold-link:  #8a6e1a;
+      --white:      #ffffff;
+      --cream:      #f9f8f5;
+      --surface:    #f3f2ef;
+      --text:       #1c1c1c;
+      --text-2:     #4a4a4a;
+      --muted:      #888;
+      --border:     rgba(0,0,0,0.08);
+      --radius:     12px;
+      --shadow-sm:  0 1px 6px rgba(0,0,0,0.07), 0 2px 16px rgba(0,0,0,0.05);
+      --shadow-md:  0 4px 24px rgba(0,0,0,0.10);
+      --shadow-hv:  0 8px 36px rgba(0,0,0,0.14);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 68px; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Sticky Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy-dk);
+      border-bottom: 2px solid var(--gold);
+    }
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    .nav-name {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 0.25rem;
+      list-style: none;
+    }
+    .nav-links a {
+      display: block;
+      padding: 0.4rem 0.85rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      border-radius: 5px;
+      letter-spacing: 0.03em;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.08);
+    }
+    .nav-links a.active { color: var(--gold-lt); }
+
+    /* ── Hero ── */
+    /* ── Hero split layout ── */
+    .hero {
+      display: flex;
+      height: 420px;
+      border-bottom: 3px solid var(--gold);
+    }
+    .hero-photo {
+      flex: 1;
+      overflow: hidden;
+    }
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+    .hero-panel {
+      width: 42%;
+      flex-shrink: 0;
+      background: linear-gradient(160deg, #111b30 0%, #1a2744 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2.5rem 2.75rem;
+      position: relative;
+    }
+    .hero-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 120% 50%, rgba(201,165,53,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .hero-subtitle {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.65);
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+    .hero-chip {
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--gold-lt);
+      background: rgba(201,165,53,0.12);
+      border: 1px solid rgba(201,165,53,0.28);
+      padding: 0.22rem 0.65rem;
+      border-radius: 20px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── Identity strip (photo + contact) ── */
+    .identity {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .identity-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      position: relative;
+    }
+    .headshot-wrap {
+      flex-shrink: 0;
+      margin-top: -52px;
+      position: relative;
+      z-index: 10;
+    }
+    .headshot {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 4px solid var(--white);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+      display: block;
+    }
+    .headshot-placeholder {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: var(--navy);
+      border: 4px solid var(--white);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Source Serif 4', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+    .identity-info {
+      flex: 1;
+      padding: 1.25rem 0;
+    }
+    .identity-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.5rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--text-2);
+    }
+    .contact-item svg {
+      width: 13px; height: 13px;
+      stroke: var(--navy); fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+    .contact-item a {
+      color: var(--gold-link);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .contact-item a:hover { text-decoration: underline; }
+    .identity-links {
+      display: flex;
+      gap: 0.5rem;
+      margin-left: auto;
+      flex-shrink: 0;
+      align-self: center;
+      padding: 1.25rem 0;
+    }
+    .ext-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--navy);
+      text-decoration: none;
+      border: 1px solid rgba(26,39,68,0.20);
+      padding: 0.38rem 0.8rem;
+      border-radius: 6px;
+      background: var(--surface);
+      transition: background 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+    .ext-link:hover {
+      background: var(--gold-pale);
+      border-color: rgba(201,165,53,0.40);
+      color: var(--navy-dk);
+    }
+    .ext-link svg {
+      width: 12px; height: 12px;
+      stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* ── Page body ── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 270px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .main-col { min-width: 0; }
+    .side-col { min-width: 0; }
+
+    /* ── Section header ── */
+    .sec-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 0.55rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── About ── */
+    section { margin-bottom: 3rem; }
+    .about-text p {
+      font-size: 0.92rem;
+      color: var(--text-2);
+      line-height: 1.80;
+      margin-bottom: 1rem;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text a { color: var(--gold-link); font-weight: 500; text-decoration: none; }
+    .about-text a:hover { text-decoration: underline; }
+
+    /* ── Research tags ── */
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.9rem;
+    }
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--navy);
+      background: rgba(26,39,68,0.07);
+      border: 1px solid rgba(26,39,68,0.12);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+    }
+
+    /* ── Course cards ── */
+    .course-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+    }
+    .course-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 1.1rem 1.2rem 1rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      transition: transform 0.17s ease, box-shadow 0.17s ease, border-color 0.17s ease;
+    }
+    .course-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hv);
+      border-color: rgba(201,165,53,0.35);
+    }
+    .course-code {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-link);
+    }
+    .course-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .course-desc {
+      font-size: 0.77rem;
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+    .course-arrow {
+      margin-top: 0.4rem;
+      font-size: 0.73rem;
+      font-weight: 500;
+      color: var(--navy);
+      display: flex; align-items: center; gap: 3px;
+    }
+    .course-arrow svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+
+    /* ── Publications ── */
+    .pub-item {
+      border-left: 3px solid transparent;
+      background: var(--white);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      box-shadow: var(--shadow-sm);
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 0.7rem;
+      font-size: 0.83rem;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+    .pub-year-tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--gold-pale);
+      border: 1px solid rgba(201,165,53,0.25);
+      padding: 0.12rem 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 0.45rem;
+    }
+    .pub-item a {
+      color: var(--text);
+      text-decoration: none;
+    }
+    .pub-item a:hover { color: var(--navy); text-decoration: underline; }
+    .pub-item em { font-style: italic; }
+
+    /* ── Sidebar ── */
+    .side-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 1.3rem 1.4rem;
+      margin-bottom: 1.1rem;
+    }
+    .side-block-title {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 0.55rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    .side-contact-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      margin-bottom: 0.8rem;
+      font-size: 0.81rem;
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+    .side-contact-row:last-child { margin-bottom: 0; }
+    .side-contact-row svg {
+      width: 14px; height: 14px;
+      stroke: var(--navy); fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .side-contact-row a { color: var(--gold-link); text-decoration: none; font-weight: 500; }
+    .side-contact-row a:hover { text-decoration: underline; }
+
+    .side-link-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.6rem 0.85rem;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      font-size: 0.79rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .side-link-btn:last-child { margin-bottom: 0; }
+    .side-link-btn:hover {
+      background: var(--gold-pale);
+      border-color: rgba(201,165,53,0.35);
+    }
+    .side-link-btn svg {
+      width: 14px; height: 14px;
+      stroke: var(--navy); fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+    .side-link-btn .ext-arrow { margin-left: auto; color: var(--muted); font-size: 0.7rem; }
+
+    .service-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin-bottom: 0.7rem;
+      font-size: 0.8rem;
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+    .service-item:last-child { margin-bottom: 0; }
+    .service-dot {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--navy-dk);
+      border-top: 2px solid var(--gold);
+      text-align: center;
+      padding: 1.75rem 1rem;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+    }
+    footer a { color: rgba(201,165,53,0.7); text-decoration: none; }
+    footer a:hover { color: var(--gold-lt); }
+
+    /* ── Mobile ── */
+    @media (max-width: 700px) {
+      .hero { flex-direction: column; height: auto; }
+      .hero-photo { height: 220px; }
+      .hero-panel { width: 100%; padding: 1.75rem 1.25rem; }
+      .hero h1 { font-size: 1.8rem; }
+      .identity-inner { flex-wrap: wrap; gap: 1rem; padding: 0 1.25rem; }
+      .identity-links { margin-left: 0; padding: 0 0 1rem; }
+      main { grid-template-columns: 1fr; padding: 2rem 1.25rem 3.5rem; gap: 0; }
+      .side-col { order: -1; margin-bottom: 2rem; }
+      .course-grid { grid-template-columns: 1fr; }
+      .nav-name { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Sticky Nav ── -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-name">Brooks Depro</span>
+    <ul class="nav-links">
+      <li><a href="#about" class="active">About</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="publications.html">Publications</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero Split ── -->
+<div class="hero">
+  <div class="hero-photo">
+    <img src="banner.jpg" alt="Marine Corps honor guard">
+  </div>
+  <div class="hero-panel">
+    <p class="hero-eyebrow">Associate Professor · Elon University</p>
+    <h1>Brooks Depro</h1>
+    <p class="hero-subtitle">Martha and Spencer Love School of Business<br>Department of Economics</p>
+    <div class="hero-chips">
+      <span class="hero-chip">Environmental Economics</span>
+      <span class="hero-chip">Economics Education</span>
+      <span class="hero-chip">U.S. Marine Corps Veteran</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── Identity Strip ── -->
+<div class="identity">
+  <div class="identity-inner">
+    <div class="headshot-wrap">
+      <!-- Replace headshot.jpg with your photo file -->
+      <img class="headshot" src="09_06_2023_Brooks Depro.jpg" alt="Brooks Depro"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="headshot-placeholder" style="display:none;">BD</div>
+    </div>
+    <div class="identity-info">
+      <div class="identity-contact">
+        <span class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:bdepro@elon.edu">bdepro@elon.edu</a>
+        </span>
+        <span class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.75a16 16 0 0 0 7.34 7.34l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (336) 278-6883
+        </span>
+        <span class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Koury Business Center 122, Elon, NC
+        </span>
+      </div>
+    </div>
+    <div class="identity-links">
+      <a class="ext-link" href="https://www.linkedin.com/in/brooksdepro/" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a class="ext-link" href="https://scholar.google.com/citations?hl=en&user=ppmDzDgAAAAJ" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 0 1 .665 6.479A11.952 11.952 0 0 0 12 20.055a11.952 11.952 0 0 0-6.824-2.998 12.078 12.078 0 0 1 .665-6.479L12 14z"/></svg>
+        Scholar
+      </a>
+      <a class="ext-link" href="https://www.elon.edu/u/directory/profile/bdepro/" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Elon Profile
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ── Page body ── -->
+<main>
+
+  <div class="main-col">
+
+    <!-- About -->
+    <section id="about">
+      <p class="sec-label">About</p>
+      <div class="about-text">
+        <p>Brooks Depro currently serves as an Associate Professor of Economics at Elon University. Before joining Elon, he spent 20 years at <a href="https://www.rti.org/" target="_blank">RTI International</a>, a nonprofit research institute in Research Triangle Park, North Carolina. Brooks is also a U.S. Marine Corps veteran.</p>
+        <p>Dr. Depro serves as a faculty advisor for the <a href="https://www.elon.edu/u/academics/business/economics/majors-minors/economic-consulting/" target="_blank">B.S.B.A. program in Business Economics &amp; Consulting</a>. Dr. Depro is also a member of the advisory board for the <a href="https://www.elon.edu/u/academics/arts-and-sciences/ppe/" target="_blank">Philosophy, Politics, and Economics (PPE) minor</a>.</p>
+        <p>His research focuses on teaching economics, the market process, and the environment. His recent teaching contributions on <a href="https://journalofeconomicsteaching.org/making-space-for-moral-reasoning-in-economics-classrooms-an-active-learning-approach-depro/" target="_blank">moral questions raised by economic tradeoffs</a>, <a href="https://www.sciencedirect.com/science/article/abs/pii/S1477388021000220?via%3Dihub" target="_blank">environmental economics</a>, and <a href="https://www.sciencedirect.com/science/article/abs/pii/S1477388022000160?via%3Dihub" target="_blank">business economics &amp; consulting</a> appear in the <em>International Review of Economics Education</em> and the <em>Journal of Economics Teaching</em>. The Martha and Spencer Love School of Business has recognized him with the Dean's Award for Excellence in Teaching, which honors a faculty member who exemplifies the Elon University teacher-scholar model.</p>
+      </div>
+    </section>
+
+    <!-- Research -->
+    <section id="research">
+      <p class="sec-label">Research Interests</p>
+      <div class="about-text">
+        <p>Dr. Depro's research spans three areas: <strong>environmental and resource economics</strong>, with a focus on environmental justice, residential mobility, and pollution regulation; <strong>labor and regional economics</strong>, including manufacturing employment and spatial inequality; and <strong>economics education</strong>, with work on active learning, case-based pedagogy, and student mindset.</p>
+      </div>
+      <div class="tag-cloud">
+        <span class="tag">Environmental Justice</span>
+        <span class="tag">Residential Mobility</span>
+        <span class="tag">Pollution Policy</span>
+        <span class="tag">Labor Markets</span>
+        <span class="tag">Economics Education</span>
+        <span class="tag">Active Learning</span>
+        <span class="tag">Case-Based Pedagogy</span>
+        <span class="tag">Academic Mindset</span>
+      </div>
+    </section>
+
+    <!-- Teaching -->
+    <section id="teaching">
+      <p class="sec-label" style="display:flex;justify-content:space-between;align-items:center;">Teaching <a href="teaching.html" style="font-size:0.72rem;font-weight:600;color:var(--gold-link);text-decoration:none;letter-spacing:0.03em;text-transform:none;">View all courses →</a></p>
+      <div class="course-grid">
+        <a class="course-card" href="https://bdepro.github.io/courses/eco1000-cengage/">
+          <span class="course-code">ECO 1000</span>
+          <span class="course-name">Principles of Economics</span>
+          <span class="course-desc">Introduction to micro and macroeconomic reasoning, markets, and policy.</span>
+          <span class="course-arrow">Course site <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </a>
+        <a class="course-card" href="https://bdepro.github.io/courses/mba6250/">
+          <span class="course-code">MBA 6250</span>
+          <span class="course-name">Essential Economics for Strategic Management</span>
+          <span class="course-desc">Economic frameworks for managerial decision-making and strategy.</span>
+          <span class="course-arrow">Course site <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </a>
+        <a class="course-card" href="https://bdepro.github.io/courses/eco4400/">
+          <span class="course-code">ECO 4400</span>
+          <span class="course-name">Applied Economics &amp; Consulting</span>
+          <span class="course-desc">Case-method capstone for independent economic research and professional communication.</span>
+          <span class="course-arrow">Course site <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </a>
+        <a class="course-card" href="https://bdepro.github.io/courses/cor1100/">
+          <span class="course-code">COR 1100</span>
+          <span class="course-name">The Global Experience</span>
+          <span class="course-desc">Interdisciplinary core course exploring global challenges through multiple lenses.</span>
+          <span class="course-arrow">Course site <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications">
+      <p class="sec-label" style="display:flex;justify-content:space-between;align-items:center;">Recent Publications <a href="publications.html" style="font-size:0.72rem;font-weight:600;color:var(--gold-link);text-decoration:none;letter-spacing:0.03em;text-transform:none;">View all 17 →</a></p>
+
+      <div class="pub-item">
+        <div class="pub-year-tag">2026</div><br>
+        <a href="https://journalofeconomicsteaching.org/making-space-for-moral-reasoning-in-economics-classrooms-an-active-learning-approach-depro/">Depro, B. 2026. "Making Space for Moral Reasoning in Economics Classrooms: An Active Learning Approach." <em>Journal of Economics Teaching</em>. Advance online publication.</a>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year-tag">2026</div><br>
+        <a href="https://www.sciencedirect.com/science/article/pii/S1477388026000113">Marshall, E. C., B. Sheridan, D. McKee, G. Orlov, W. Goffe, A. Bellas, B. Depro, et al. 2026. "Measuring Academic Mindset in Economics Courses." <em>International Review of Economics Education</em> 52: 100349.</a>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year-tag">2024</div><br>
+        <a href="https://journal-veterans-studies.org/articles/10.21061/jvs.v10i1.544">Depro, B. 2024. "Achieving the American Dream, Homeownership Wealth, and Voluntary Military Service." <em>Journal of Veterans Studies</em> 10 (1): 214&ndash;221.</a>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year-tag">2022</div><br>
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/S1477388022000160">Depro, B., and K. Rouse. 2022. "Adapting the Case Method in an Economics Capstone Research Course." <em>International Review of Economics Education</em> 41: 100249.</a>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year-tag">2021</div><br>
+        <a href="http://le.uwpress.org/content/97/2/475.abstract">Depro, B. 2021. "Did Smog Rules Influence Who Loses? Manufacturing Job Losses and the Great Recession." <em>Land Economics</em> 97 (2): 475&ndash;490.</a>
+      </div>
+
+    </section>
+
+  </div><!-- /main-col -->
+
+  <!-- ── Sidebar ── -->
+  <div class="side-col">
+
+    <div class="side-block">
+      <p class="side-block-title">Contact</p>
+      <div class="side-contact-row">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span><a href="mailto:bdepro@elon.edu">bdepro@elon.edu</a></span>
+      </div>
+      <div class="side-contact-row">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.75a16 16 0 0 0 7.34 7.34l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>(336) 278-6883</span>
+      </div>
+      <div class="side-contact-row">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Koury Business Center 122<br>2075 Campus Box<br>Elon, NC 27244</span>
+      </div>
+    </div>
+
+    <div class="side-block">
+      <p class="side-block-title">Profiles</p>
+      <a class="side-link-btn" href="https://www.linkedin.com/in/brooksdepro/" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+        <span class="ext-arrow">↗</span>
+      </a>
+      <a class="side-link-btn" href="https://scholar.google.com/citations?hl=en&user=ppmDzDgAAAAJ" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 0 1 .665 6.479A11.952 11.952 0 0 0 12 20.055a11.952 11.952 0 0 0-6.824-2.998 12.078 12.078 0 0 1 .665-6.479L12 14z"/></svg>
+        Google Scholar
+        <span class="ext-arrow">↗</span>
+      </a>
+      <a class="side-link-btn" href="https://www.elon.edu/u/directory/profile/bdepro/" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Elon Faculty Profile
+        <span class="ext-arrow">↗</span>
+      </a>
+    </div>
+
+    <div class="side-block">
+      <p class="side-block-title">Recognition &amp; Service</p>
+      <div class="service-item">
+        <span class="service-dot"></span>
+        <span>Dean's Award — teacher-scholar model, Love School of Business</span>
+      </div>
+      <div class="service-item">
+        <span class="service-dot"></span>
+        <span>Advisor, B.S.B.A. Economic Consulting program</span>
+      </div>
+      <div class="service-item">
+        <span class="service-dot"></span>
+        <span>Advocate, Center for Organizational Analytics</span>
+      </div>
+      <div class="service-item">
+        <span class="service-dot"></span>
+        <span>Advisory Board, Philosophy, Politics, and Economics minor</span>
+      </div>
+      <div class="service-item">
+        <span class="service-dot"></span>
+        <span>Veteran, United States Marine Corps</span>
+      </div>
+    </div>
+
+  </div><!-- /side-col -->
+
+</main>
+
+<footer>
+  Brooks Depro &nbsp;·&nbsp; Associate Professor of Economics &nbsp;·&nbsp;
+  <a href="https://www.elon.edu" target="_blank">Elon University</a>
+  &nbsp;·&nbsp;
+  <a href="https://www.elon.edu/u/academics/business/" target="_blank">Love School of Business</a>
+</footer>
+
+</body>
+</html>
