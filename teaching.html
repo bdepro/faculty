@@ -114,24 +114,51 @@
       display: flex; flex-direction: column; gap: 0.4rem;
       transition: transform 0.17s ease, box-shadow 0.17s ease, border-top-color 0.17s ease;
     }
-    .course-card:hover {
+    .course-card.active {
+      border-top-color: var(--gold);
+    }
+    .course-card.active:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-hv);
       border-top-color: var(--gold);
+    }
+    .course-card.upcoming {
+      background: var(--surface);
+      box-shadow: none;
+      cursor: default;
+    }
+    .course-status {
+      font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.10em; text-transform: uppercase;
+      padding: 0.18rem 0.55rem; border-radius: 20px;
+      display: inline-block; margin-bottom: 0.2rem; width: fit-content;
+    }
+    .course-status.active {
+      color: var(--navy);
+      background: var(--gold-pale);
+      border: 1px solid rgba(201,165,53,0.35);
+    }
+    .course-status.upcoming {
+      color: var(--muted);
+      background: rgba(0,0,0,0.04);
+      border: 1px solid rgba(0,0,0,0.08);
     }
     .course-code {
       font-size: 0.62rem; font-weight: 700;
       letter-spacing: 0.15em; text-transform: uppercase;
       color: var(--gold-link);
     }
+    .course-card.upcoming .course-code { color: var(--muted); }
     .course-name {
       font-family: 'Source Serif 4', Georgia, serif;
       font-size: 1.05rem; font-weight: 600;
       color: var(--text); line-height: 1.25;
     }
+    .course-card.upcoming .course-name { color: var(--text-2); font-weight: 500; }
     .course-desc {
       font-size: 0.82rem; color: var(--text-2); line-height: 1.6; flex: 1;
     }
+    .course-card.upcoming .course-desc { color: var(--muted); }
     .course-arrow {
       margin-top: 0.6rem; font-size: 0.75rem; font-weight: 500;
       color: var(--navy); display: flex; align-items: center; gap: 4px;
@@ -227,38 +254,31 @@
   <section>
     <p class="sec-label">Courses</p>
     <div class="course-grid">
-      <a class="course-card" href="https://bdepro.github.io/courses/eco1000-cengage/">
+      <a class="course-card active" href="https://bdepro.github.io/courses/eco1000-cengage/">
+        <span class="course-status active">Active · Summer 2026</span>
         <span class="course-code">ECO 1000</span>
         <span class="course-name">Principles of Economics</span>
         <span class="course-desc">An introduction to micro and macroeconomic reasoning for first-year students. Topics include supply and demand, market structure, GDP, unemployment, inflation, and fiscal policy.</span>
         <span class="course-arrow">Course site <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
       </a>
-      <a class="course-card" href="https://bdepro.github.io/courses/mba6250/">
+      <div class="course-card upcoming">
+        <span class="course-status upcoming">Fall 2026</span>
         <span class="course-code">MBA 6250</span>
         <span class="course-name">Essential Economics for Strategic Management</span>
         <span class="course-desc">Economic frameworks for managerial decision-making, including demand estimation, pricing strategy, cost analysis, and market structure — applied to real business cases.</span>
-        <span class="course-arrow">Course site <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-      </a>
-      <a class="course-card" href="https://bdepro.github.io/courses/eco4400/">
+      </div>
+      <div class="course-card upcoming">
+        <span class="course-status upcoming">Fall 2026</span>
         <span class="course-code">ECO 4400</span>
         <span class="course-name">Applied Economics &amp; Consulting</span>
         <span class="course-desc">A senior capstone using the case method to develop independent research skills, professional writing, and economic reasoning applied to real-world consulting problems.</span>
-        <span class="course-arrow">Course site <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-      </a>
-      <a class="course-card" href="https://bdepro.github.io/courses/cor1100/">
+      </div>
+      <div class="course-card upcoming">
+        <span class="course-status upcoming">Fall 2026</span>
         <span class="course-code">COR 1100</span>
         <span class="course-name">The Global Experience</span>
         <span class="course-desc">Elon's interdisciplinary core course exploring global challenges through economics, political science, history, and ethics.</span>
-        <span class="course-arrow">Course site <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-      </a>
-    </div>
-  </section>
-
-  <section>
-    <p class="sec-label">Teaching Philosophy</p>
-    <div class="philosophy-card">
-      <p>Dr. Depro's teaching centers on active learning, real-world applications, and connecting economic reasoning to students' own lives and communities. His classroom practice reflects a teacher-scholar model — he brings current research into course design and uses pedagogical questions to motivate new scholarship.</p>
-      <p>His recent work on <a href="https://journalofeconomicsteaching.org/making-space-for-moral-reasoning-in-economics-classrooms-an-active-learning-approach-depro/" target="_blank">moral reasoning in economics classrooms</a>, <a href="https://www.sciencedirect.com/science/article/abs/pii/S1477388021000220" target="_blank">personalized connections to environmental economics</a>, and <a href="https://www.sciencedirect.com/science/article/abs/pii/S1477388022000160" target="_blank">the case method in capstone courses</a> appears in the <em>International Review of Economics Education</em> and the <em>Journal of Economics Teaching</em>. The Martha and Spencer Love School of Business recognized this work with the Dean's Award for Excellence in Teaching.</p>
+      </div>
     </div>
   </section>
 
